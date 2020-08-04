@@ -19,9 +19,9 @@ def isArgDynamic (arg,inputs=inputs):
 # Dans le cas où l'argument donné n'est pas dynamique, on renvoie None.
 def getArgDynamic (arg,inputs=inputs):
     match = re.search(r'^\$(\d+)$', arg)
-    input = inputs[int(match.group(1))]
-    if isinstance(input, list): return None
-    return input
+    entry = inputs[int(match.group(1))]
+    if isinstance(entry, list): return None
+    return entry
 
 # Fonction principale
 def main(inputs=inputs):
@@ -62,23 +62,23 @@ def main(inputs=inputs):
         # On incrémente le curseur. Si sa valeur a atteint n (le nombre d'entrée), on revient à 0.
         cursor = (cursor + 1) % n
 
-        # On déclare la variable input pour faciliter la lecture (voire les performances du programme)
-        input = inputs[cursor]
+        # On déclare la variable entry pour faciliter la lecture (voire les performances du programme)
+        entry = inputs[cursor]
 
         # Si l'entrée est une chaine de caractère, alors...
-        if isinstance(input, str): 
+        if isinstance(entry, str): 
             # ... on converti la valeur en nombre...
-            inputs[cursor] = int(input)
+            inputs[cursor] = int(entry)
             # ... et on passe à l'entrée suivante.
             continue
 
         # Si l'entrée est un nombre, alors...
-        if isinstance(input, int): 
+        if isinstance(entry, int): 
             # ... on passe à l'entrée suivante.
             continue
 
         # On récupère les valeurs de l'entrée.
-        operation, arg_1, arg_2 = input
+        operation, arg_1, arg_2 = entry
 
         # Si le premier argument est "dynamique", alors...
         if isArgDynamic(arg_1):
