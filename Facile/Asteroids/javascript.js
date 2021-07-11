@@ -13,6 +13,7 @@ let matches
 
 const pattern = /(\w{1})/
 
+// On recupere la position des asteroids en t1 et t2
 for (let i = 0; i < H; i++) {
     let cursor = -1;
     for (let entry of readline().split(' ')) {
@@ -28,6 +29,7 @@ for (let i = 0; i < H; i++) {
     }
 }
 
+// Pour chaque asteroid, on cherche t3
 for (let letter in asteroids) {
     try {
         let diff = [
@@ -47,6 +49,7 @@ for (let letter in asteroids) {
     catch(e) { continue; }
 }
 
+// On affiche le résultat
 for (let i = 0; i < H; i++) {
     let row = (new Array(W)).fill('.').join('')
     for (let [letter,positions] of Object.entries(asteroids).sort().reverse()) {
